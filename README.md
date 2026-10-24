@@ -1,3 +1,32 @@
+# NOTHING Phone(4a) Release Note
+ - NOS 4.1(Frogger-B4.1-260309-1830)
+   - First release opensource of kernel and kernel modules
+   - Devicetree and modules path
+      - arch/arm64/boot/dts/vendor/
+      - vendor/qcom/proprietary/
+      - vendor/qcom/opensource/
+
+ - NOS 4.1(Frogger-B4.1-260402-1229)
+   - Improve stability
+   - Improve haptic
+
+ - NOS 4.1(Frogger-B4.1-260430-1731)
+   - Improve stability
+   - Improve display
+   - Security patch
+   - Fix touch and video issue
+   - Upgrade to kernel 6.1.157
+
+ - NOS 4.1(Frogger-B4.1-260630-1839)
+   - Fix TP issue
+
+ - NOS 4.1(Frogger-B4.1-260808-1352)
+   - No update
+
+ - NOS 4.1(Frogger-B4.1-260911-0959)
+   - No update
+
+
 # How do I submit patches to Android Common Kernels
 
 1. BEST: Make all of your changes to upstream Linux. If appropriate, backport to the stable releases.
@@ -147,4 +176,5 @@ a maintainer tree)
 - If the patch is a new feature
     - tag the patch subject with `ANDROID:`
     - add a `Bug:` tag with the Android bug (required for android-specific features)
+
 

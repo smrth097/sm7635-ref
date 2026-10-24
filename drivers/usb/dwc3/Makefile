@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0
 # define_trace.h needs to know how to find our header
 CFLAGS_trace.o				:= -I$(src)
+CFLAGS_dwc3-msm-core.o			:= -I$(srctree)/drivers/usb/host
 
 obj-$(CONFIG_USB_DWC3)			+= dwc3.o
 
@@ -52,5 +53,11 @@ obj-$(CONFIG_USB_DWC3_MESON_G12A)	+= dwc3-meson-g12a.o
 obj-$(CONFIG_USB_DWC3_OF_SIMPLE)	+= dwc3-of-simple.o
 obj-$(CONFIG_USB_DWC3_ST)		+= dwc3-st.o
 obj-$(CONFIG_USB_DWC3_QCOM)		+= dwc3-qcom.o
+obj-$(CONFIG_USB_DWC3_QCOM_MP)		+= dwc3-qcom-mp.o
 obj-$(CONFIG_USB_DWC3_IMX8MP)		+= dwc3-imx8mp.o
 obj-$(CONFIG_USB_DWC3_XILINX)		+= dwc3-xilinx.o
+obj-$(CONFIG_USB_DWC3_MSM)		+= dwc3-msm.o
+dwc3-msm-y				:= dwc3-msm-core.o debug_ipc.o
+ifneq ($(CONFIG_ARM64),)
+dwc3-msm-y				+= dwc3-msm-ops.o
+endif

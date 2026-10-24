@@ -168,4 +168,25 @@ config USB_DWC3_AM62
 	  The Designware Core USB3 IP is programmed to operate in
 	  in USB 2.0 mode only.
 	  Say 'Y' or 'M' here if you have one such device
+
+config USB_DWC3_MSM
+	tristate "QTI MSM Platforms"
+	depends on ARCH_QCOM || COMPILE_TEST
+	help
+	  Applicable to QTI MSM Platforms with DesignWare Core
+	  USB3 IP.
+	  Driver supports host, device and dual-role modes of operation.
+	  Say 'Y' or 'M' if you have one such device.
+
+config USB_DWC3_QCOM_MP
+	tristate "Qualcomm Platform"
+	depends on ARCH_QCOM || COMPILE_TEST
+	depends on EXTCON || !EXTCON
+	depends on OF
+	help
+	  Some Qualcomm SoCs use DesignWare Core IP for USB2/3
+	  functionality.
+	  This driver also handles Qscratch wrapper which is needed
+	  for multiport support in host mode.
+	  Say 'Y' or 'M' if you have one such device.
 endif

@@ -1,0 +1,53 @@
+/dts-v1/;
+/plugin/;
+
+#include "volcano-qrd.dtsi"
+//#ifdef NT_EDIT
+//Nothing/Add for bootloader log file node/ARCA-273
+#include "volcano-arca-common-overlay.dtsi"
+//#endif /* NT_EDIT */
+
+#include "volcano-frogger-camera-supply.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Volcano QRD";
+	compatible = "qcom,volcano-qrd", "qcom,volcano", "qcom,volcanop-qrd", "qcom,volcanop", "qcom,qrd";
+	qcom,msm-id = <636 0x10000>, <640 0x10000>, <641 0x10000>, <712 0x10000>;
+	qcom,board-id = <11 0>;
+
+	//#ifdef NT_EDIT
+	//Nothing/Dynamic DTS for base and pro/ARCA-528
+	qcom,oem-id = <1>;
+	//#endif /* NT_EDIT */
+};
+
+
+&pmiv0104_eusb2_repeater {
+	status = "ok";
+	vdd18-supply = <&L7B>;
+	vdd3-supply = <&L17B>;
+
+	qcom,param-override-seq =
+		/*NT_EDIT ARCA-286 modify 0xFD51 value from 0xb to 0x9*/
+		/*NT_EDIT ARCA-290 add 0xFD54 value to 0x5*/
+		<0xD 0x51
+		 0x1 0x53
+		 0x5 0x54
+		 0x3 0x55
+		 0x7 0x57
+		 0x3 0x59>;
+	qcom,host-param-override-seq =
+		/*NT_EDIT ARCA-286 modify 0xFD51 value from 0xb to 0x9*/
+		/*NT_EDIT ARCA-290 add 0xFD54 value to 0x5*/
+		<0x6 0x51
+		 0x2 0x53
+		 0x4 0x54
+		 0x0 0x55
+		 0x1 0x57
+		 0x0 0x59>;
+};
+
+&eusb2_phy0 {
+	dummy-supply = <&pmiv0104_eusb2_repeater>;
+	usb-repeater = <&pmiv0104_eusb2_repeater>;
+};
